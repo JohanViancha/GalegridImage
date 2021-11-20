@@ -10,7 +10,7 @@ export class NavbarComponent implements OnInit {
   titleProyect:string;
   
   constructor() { 
-    this.titleProyect = 'MAGRENDER';
+    this.titleProyect = 'GalegridImage';
   }
 
   ngOnInit(): void {
