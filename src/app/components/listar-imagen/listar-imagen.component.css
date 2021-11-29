@@ -67,6 +67,7 @@
 
 .card {
     width: 300px;
+    margin: auto;
 }
 
 .card-footer{
@@ -105,3 +106,19 @@ ul{
     margin: 0px;
 }
 
+@media screen and (max-width:624px) {
+    
+    .card-imagens{
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width:322px) {
+    .card{
+        width: 98%;
+    }
+
+    .card-header{
+        flex-direction: column;
+    }
+}
