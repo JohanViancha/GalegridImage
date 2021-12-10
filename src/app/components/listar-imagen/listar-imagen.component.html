@@ -40,13 +40,13 @@
 <div class="content-pagination" *ngIf="listImagenes.length > 0">
 
   <div>
-    <span class="text-pagination">Mostrando {{totalRegistosVisto}} de {{totalRegistros}}</span>
+    <span class="text-pagination">Mostrando del {{registrosMinimo}} al {{totalRegistosVisto}} de {{totalRegistros}}</span>
   </div>
 
   <ul class="pagination pagination-lg">
     <li class="page-item" *ngIf="paginaActual>1">
      
-      <a (click)="paginaAnterior()" href="./#" > 
+      <a (click)="paginaAnterior()" href="/#" > 
         <button type="button" class="btn btn-outline-light"><i class="fas fa-chevron-left"></i> Anterior</button>
       </a>
     </li>

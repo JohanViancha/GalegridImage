@@ -18,6 +18,7 @@ export class ListarImagenComponent implements OnInit {
   calcularTotalPaginas = 0;
   totalRegistros = 0;
   totalRegistosVisto = 0;
+  registrosMinimo=1 ;
   constructor(private _imageService:ImagenService) { 
     this.suscription = this._imageService.getTerminoBusqueda().subscribe(data=>{
         this.termino = data;
@@ -33,18 +34,21 @@ export class ListarImagenComponent implements OnInit {
 
   obtenerImagenes(termino:string, navega:number){
     this._imageService.getImagenes(this.termino, this.imagenesPorPagina, this.paginaActual).subscribe(data=>{
+      console.log(data.hits.length);
+      
       this.loading = false;
       this.totalRegistros = data.totalHits;
       this.totalPorPagina = data.hits.length;
       if(navega===0){
         this.totalRegistosVisto = this.totalPorPagina;
+        this.registrosMinimo = 1;
       }
       else if(navega===1){   
+        this.registrosMinimo+=this.imagenesPorPagina;
         this.totalRegistosVisto += this.totalPorPagina;
       }
       else if(navega===-1){
-        console.log(this.totalPorPagina);
-        this.totalRegistosVisto -= this.totalPorPagina;
+        this.registrosMinimo=(this.registrosMinimo - this.imagenesPorPagina);
       }
 
       if(data.totalHits===0){
@@ -64,6 +68,7 @@ export class ListarImagenComponent implements OnInit {
     this.paginaActual--;
     this.loading = true;
     this.listImagenes = [];
+    this.totalRegistosVisto = (this.totalRegistosVisto-this.totalPorPagina);
     this.obtenerImagenes(this.termino,-1);
   }
 
